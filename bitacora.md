@@ -71,8 +71,22 @@ module.exports = {
 
 4. crear un componente con nuxi
 
+    -mediante la consola se puede crear un componente con el siguiente comando
+    -se pueden crear diferentes tipos de componentes como page, layout, component, store, middleware, etc
+
 ```bash
 pn nuxi add component LeftSidebar
+```
+
+-   tambien se pueden crear carpetas dentro de la carpeta components para tener un poco mas de organizacion
+    pero a la hora de usar los componentes se debe especificar la ruta completa
+
+ej. components/sidebar/Left.vue se importaria asi
+
+```vue
+<template>
+	<SidebarLeft />
+</template>
 ```
 
 # Anotaciones Sueltas
@@ -81,4 +95,36 @@ pn nuxi add component LeftSidebar
 
 ```vue
 <div :class="{ dark: darkMode }"></div>
+```
+
+2. esto se puede hacer en tailwind para ahorrar codigo boilerplate
+
+```vue
+<div :class="transition"></div>
+
+<script setup>
+const transition = 'transition duration-500 ease-in-out';
+</script>
+```
+
+3. y por ultimo esto se puede hacer por medio de composable
+
+./composables/useTailwindConfig.ts
+
+```ts
+export default () => {
+	return {
+		defaultTransition: 'transition duration-500 ease-in-out',
+	};
+};
+```
+
+luego en el componente
+
+```vue
+<div :class="transition"></div>
+
+<script setup>
+const { defaultTransition: transition } = useTailwindConfig();
+</script>
 ```
