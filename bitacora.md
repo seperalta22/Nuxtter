@@ -89,13 +89,64 @@ ej. components/sidebar/Left.vue se importaria asi
 </template>
 ```
 
-# Anotaciones Sueltas
+# Agregar iconos
 
-1. para hacer una clase dinamica se usa la siguiente sintaxis, que indica que depende de la variable darkMode
+5. instalar iconos
+
+```bash
+pn i -D nuxt-icon
+```
+
+.agregar el modulo en nuxt.config.js
+
+```ts
+export default {
+	modules: ['nuxt-icon'],
+};
+```
+
+6. crear el archivo app.config.ts
+
+```ts
+export default defineAppConfig({
+	nuxtIcon: {
+		size: '40px', // default <Icon> size applied
+		class: 'icon', // default <Icon> class applied
+		aliases: {
+			nuxt: 'logos:nuxt-icon',
+		},
+	},
+});
+```
+
+y listo ya se pueden usar los iconos
 
 ```vue
-<div :class="{ dark: darkMode }"></div>
+<template>
+	<Icon name="logos:nuxt-icon" />
+</template>
 ```
+
+# Reestructuracion de componentes
+
+7. podemos crear una carpeta Sidebar/Left/index.vue y exportar el componente de esa manera
+
+```vue
+<template>
+	<SidebarLeft />
+</template>
+```
+
+-   esto nos serviria para que en el archivo index.vue se puedan importar todos los componentes de la carpeta Sidebar/Left
+
+# Anotaciones Sueltas
+
+1.  para hacer una clase dinamica se usa la siguiente
+
+sintaxis, que indica que depende de la variable darkMode ```vue
+
+<div :class="{ dark: darkMode }"></div>
+````
 
 2. esto se puede hacer en tailwind para ahorrar codigo boilerplate
 
